@@ -94,59 +94,30 @@
     }
 
     /* USE CASES */
-    .use-cases { padding: 80px 24px; max-width: 1000px; margin: 0 auto; }
+    .use-cases { padding: 0; }
 
     .use-case {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-      padding: 60px 0;
+      display: flex;
+      flex-direction: column;
       border-bottom: 1px solid #f0e8d0;
     }
     .use-case:last-child { border-bottom: none; }
-    .use-case.reverse .use-case-text { order: 2; }
-    .use-case.reverse .use-case-img  { order: 1; }
 
     .use-case-img {
-      background: var(--gold-bg);
-      border-radius: var(--radius);
-      aspect-ratio: 4/3;
       display: flex;
-      align-items: center;
       justify-content: center;
-      overflow: hidden;
     }
-    .phone-mock {
-      width: 110px;
-      background: var(--white);
-      border-radius: 22px;
-      padding: 14px 10px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.13);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
+    .use-case-img img {
+      width: 80%;
+      height: auto;
+      display: block;
     }
-    .phone-mock .avatar {
-      width: 48px; height: 48px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold-light), var(--gold));
-    }
-    .phone-mock .name { font-size: 0.65rem; font-weight: 700; color: var(--dark); }
-    .phone-mock .qr {
-      width: 44px; height: 44px;
-      background: repeating-conic-gradient(var(--dark) 0% 25%, var(--white) 0% 50%) 0 0/8px 8px;
-      border-radius: 4px;
-    }
-    .phone-mock .pay-btn {
-      background: var(--gold);
-      color: var(--white);
-      font-size: 0.55rem;
-      font-weight: 700;
-      padding: 5px 10px;
-      border-radius: 6px;
-      width: 100%;
+
+    .use-case-text {
+      max-width: 720px;
+      padding: 48px 40px;
       text-align: center;
+      margin: 0 auto;
     }
 
     .use-case-label {
@@ -245,13 +216,7 @@
 
     @media (max-width: 640px) {
       nav { padding: 16px 20px; }
-      .use-case {
-        grid-template-columns: 1fr;
-        gap: 32px;
-        padding: 40px 0;
-      }
-      .use-case.reverse .use-case-text { order: 1; }
-      .use-case.reverse .use-case-img  { order: 2; }
+      .use-case-text { padding: 32px 20px; }
     }
   </style>
 </head>
@@ -276,12 +241,7 @@
 
     <div class="use-case">
       <div class="use-case-img">
-        <div class="phone-mock">
-          <div class="avatar"></div>
-          <div class="name">Barista Baristaite</div>
-          <div class="qr"></div>
-          <div class="pay-btn">Pay tip</div>
-        </div>
+        <img src="images/mobile-tip-payment-cafe.png" alt="Barista receiving a mobile tip payment via phone link" />
       </div>
       <div class="use-case-text">
         <div class="use-case-label">Tips</div>
@@ -290,14 +250,9 @@
       </div>
     </div>
 
-    <div class="use-case reverse">
+    <div class="use-case">
       <div class="use-case-img">
-        <div class="phone-mock">
-          <div class="avatar"></div>
-          <div class="name">Barber Barbierite</div>
-          <div class="qr"></div>
-          <div class="pay-btn">Pay €25</div>
-        </div>
+        <img src="images/mobile-payment-barber-fixed-price.png" alt="Barber accepting fixed price mobile payment from customer" />
       </div>
       <div class="use-case-text">
         <div class="use-case-label">Fixed prices</div>
@@ -308,12 +263,7 @@
 
     <div class="use-case">
       <div class="use-case-img">
-        <div class="phone-mock">
-          <div class="avatar" style="background: linear-gradient(135deg, #f5c87a, #c8922a);"></div>
-          <div class="name">Padavaite</div>
-          <div class="qr"></div>
-          <div class="pay-btn">Pay bill</div>
-        </div>
+        <img src="images/mobile-table-bill-payment-restaurant.png" alt="Restaurant customer paying table bill via mobile phone link" />
       </div>
       <div class="use-case-text">
         <div class="use-case-label">Table bills</div>
