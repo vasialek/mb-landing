@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accept payments instantly</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C8922A;
+      --gold-light: #F5DFA0;
+      --gold-bg: #FBF5E6;
+      --dark: #1A1208;
+      --text: #3D2E0A;
+      --muted: #7A6035;
+      --white: #FFFFFF;
+      --radius: 14px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: 1px solid #f0e8d0;
+    }
+    .logo { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.5px; color: #ccc; }
+    .logo span { color: #ccc; }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--white);
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: #a87520; }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 80px 24px 60px;
+      background: linear-gradient(160deg, var(--gold-bg) 0%, var(--white) 70%);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--dark);
+      max-width: 720px;
+      margin: 0 auto 20px;
+      line-height: 1.15;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto 36px;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      padding: 16px 36px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-primary:hover { background: #a87520; transform: translateY(-1px); }
+
+    /* PHOTO ROW CAPTION */
+    .tag-row {
+      text-align: center;
+      padding: 16px 24px;
+      background: var(--gold-bg);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* USE CASES */
+    .use-cases { padding: 80px 24px; max-width: 1000px; margin: 0 auto; }
+
+    .use-case {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      padding: 60px 0;
+      border-bottom: 1px solid #f0e8d0;
+    }
+    .use-case:last-child { border-bottom: none; }
+    .use-case.reverse .use-case-text { order: 2; }
+    .use-case.reverse .use-case-img  { order: 1; }
+
+    .use-case-img {
+      background: var(--gold-bg);
+      border-radius: var(--radius);
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .phone-mock {
+      width: 110px;
+      background: var(--white);
+      border-radius: 22px;
+      padding: 14px 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .phone-mock .avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    }
+    .phone-mock .name { font-size: 0.65rem; font-weight: 700; color: var(--dark); }
+    .phone-mock .qr {
+      width: 44px; height: 44px;
+      background: repeating-conic-gradient(var(--dark) 0% 25%, var(--white) 0% 50%) 0 0/8px 8px;
+      border-radius: 4px;
+    }
+    .phone-mock .pay-btn {
+      background: var(--gold);
+      color: var(--white);
+      font-size: 0.55rem;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 6px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .use-case-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .use-case-text h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .use-case-text p { color: var(--muted); font-size: 1rem; }
+
+    /* PRICING */
+    .pricing {
+      background: var(--gold-bg);
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .pricing h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+    .pricing .subtitle { color: var(--muted); margin-bottom: 40px; }
+    .price-table {
+      margin: 0 auto 24px;
+      border-collapse: collapse;
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      max-width: 360px;
+      width: 100%;
+    }
+    .price-table th, .price-table td {
+      padding: 14px 28px;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    .price-table thead th {
+      background: var(--dark);
+      color: var(--white);
+      font-weight: 600;
+    }
+    .price-table tbody tr:nth-child(even) { background: var(--gold-bg); }
+    .price-table tbody td { color: var(--text); }
+    .price-table tbody td:last-child { font-weight: 700; color: var(--dark); }
+
+    .pricing-note {
+      font-size: 0.82rem;
+      color: var(--muted);
+      max-width: 460px;
+      margin: 0 auto;
+    }
+
+    /* CTA FOOTER */
+    .cta-section {
+      text-align: center;
+      padding: 90px 24px;
+      background: linear-gradient(160deg, var(--dark) 0%, #3D2E0A 100%);
+      color: var(--white);
+    }
+    .cta-section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .cta-section p { color: var(--gold-light); margin-bottom: 36px; font-size: 1.05rem; }
+    .btn-light {
+      display: inline-block;
+      background: var(--white);
+      color: var(--dark);
+      padding: 16px 36px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-light:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid #f0e8d0;
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 16px 20px; }
+      .use-case {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 40px 0;
+      }
+      .use-case.reverse .use-case-text { order: 1; }
+      .use-case.reverse .use-case-img  { order: 2; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">MO<span>BED</span></div>
+    <a href="#" class="nav-cta">Start accepting payments</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Accept payments instantly — no app, no setup, no friction.</h1>
+    <p>MOBED lets your customers pay by phone in seconds. Just share a link.</p>
+    <a href="#" class="btn-primary">Start accepting payments</a>
+  </section>
+
+  <div class="tag-row">Tips &nbsp;·&nbsp; Fixed prices &nbsp;·&nbsp; Table bills</div>
+
+  <!-- USE CASES -->
+  <section class="use-cases">
+
+    <div class="use-case">
+      <div class="use-case-img">
+        <div class="phone-mock">
+          <div class="avatar"></div>
+          <div class="name">Barista Baristaite</div>
+          <div class="qr"></div>
+          <div class="pay-btn">Pay tip</div>
+        </div>
+      </div>
+      <div class="use-case-text">
+        <div class="use-case-label">Tips</div>
+        <h2>Make tipping effortless</h2>
+        <p>Your customers want to say thank you — don't make them dig for cash. With MOBED they tap a link, pick an amount, and pay in seconds. No app, no account, no awkward moment. Perfect for cafes, food delivery, and anyone who deserves a tip.</p>
+      </div>
+    </div>
+
+    <div class="use-case reverse">
+      <div class="use-case-img">
+        <div class="phone-mock">
+          <div class="avatar"></div>
+          <div class="name">Barber Barbierite</div>
+          <div class="qr"></div>
+          <div class="pay-btn">Pay €25</div>
+        </div>
+      </div>
+      <div class="use-case-text">
+        <div class="use-case-label">Fixed prices</div>
+        <h2>Your price list, online</h2>
+        <p>Set your services once — haircut, consultation, session — and share a link. Customers pay the exact amount before or after. No card reader, no invoices, no chasing payments. MOBED keeps it simple for barbers, studios, and independent professionals.</p>
+      </div>
+    </div>
+
+    <div class="use-case">
+      <div class="use-case-img">
+        <div class="phone-mock">
+          <div class="avatar" style="background: linear-gradient(135deg, #f5c87a, #c8922a);"></div>
+          <div class="name">Padavaite</div>
+          <div class="qr"></div>
+          <div class="pay-btn">Pay bill</div>
+        </div>
+      </div>
+      <div class="use-case-text">
+        <div class="use-case-label">Table bills</div>
+        <h2>Close the table in seconds</h2>
+        <p>Your staff enters the bill, the customer gets a link and pays from their phone. No waiting for the machine, no splitting receipts, no paper. MOBED gets your tables turning faster.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing">
+    <h2>Simple, transparent fees.</h2>
+    <p class="subtitle">No monthly charge, no surprises.</p>
+
+    <table class="price-table">
+      <thead>
+        <tr><th>Payment</th><th>You receive</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>€2</td><td>€1.71</td></tr>
+        <tr><td>€5</td><td>€4.65</td></tr>
+        <tr><td>€20</td><td>€19.37</td></tr>
+        <tr><td>€50</td><td>€48.80</td></tr>
+        <tr><td>€100</td><td>€97.85</td></tr>
+      </tbody>
+    </table>
+
+    <p class="pricing-note">No setup fee. No monthly fee. No hardware.<br/>Stripe 1.4% + €0.25 EU processing + 0.5% platform fee per transaction.</p>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Ready to get paid?</h2>
+    <p>Set up your MOBED account in minutes. No monthly fees, no hardware, no contracts.</p>
+    <a href="#" class="btn-light">Get started for free</a>
+  </section>
+
+  <footer>
+    &copy; 2026 MOBED. All rights reserved.
+  </footer>
+
+</body>
+</html>
