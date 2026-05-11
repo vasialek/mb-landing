@@ -141,3 +141,24 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+/.idea/.gitignore
+/.idea/encodings.xml
+/.idea/mb-landing.iml
+/.idea/modules.xml
+/.idea/vcs.xml
+/_docs/fix20260507/FIXES.md
+/_docs/fix20260507/image(1).png
+/_docs/fix20260507/image(2).png
+/_docs/fix20260507/image(3).png
+/_docs/fix20260507/image(4).png
+/_docs/fix20260507/image(5).png
+/_docs/fix20260507/image(6).png
+/_docs/fix20260507/image(7).png
+/_docs/fix20260507/image(8).png
+/_docs/fix20260507/image(9).png
+/_docs/fix20260507/image(10).png
+/_docs/fix20260507/image(11).png
+/CLAUDE.md
+/Landing page.eml
+/Screenshot from 2026-04-29 20-09-43.png
+/Screenshot from 2026-04-30 18-45-43.png
